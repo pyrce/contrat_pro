@@ -32,4 +32,4 @@ Structure du fichier :
   }
 
 
-Pour crée le fichier, il faut se mettre à la racine du projet et taper la commande nom init. On peut si l’ont souhaite spécifier la valeur par défaut de la commande: npm set init.author.email "example-user@example.com"
+Pour crée le fichier, il faut se mettre à la racine du projet et taper la commande npm init. On peut si l’ont souhaite spécifier la valeur par défaut de la commande: npm set init.author.email "example-user@example.com"
