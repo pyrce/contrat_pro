@@ -1,0 +1,24 @@
+<table>
+        <thead>
+        <th>nombre1</th>
+        <th>nombre2</th>
+        <th>operation</th>
+        <th>resultat</th>
+        </thead>
+        <tbody>
+        
+   
+        <% for(var i=0;i<=liste.length;i++){ %>
+        <tr>
+        <td><%= liste[i].nombre1 %></td>
+        <td><%= liste[i].nombre2 %></td>
+        <td><%= liste[i].type_operation %></td>
+        <td><%= liste[i].resultat %></td>
+        </tr>
+        
+        <% } %>
+     
+        </tbody>
+        
+        
+        </table>

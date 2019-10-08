@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<form action="/add" method="post">
+<input type="text" name="nom" /><button onclick>Ajout</button>
+
+</form>
+<ul class="text-dark bg-light border border-dark d-flex flex-column" style="height:300px;width:200px">
+    <% if (list) { %>
+        <%for (var i = 0; i < list.length; i++) { %>
+            <li class="text-primary justify-content-around rounded d-flex flex-row mb-1" style="background-color:coral"><%= list[i].nom %> <a href="/delete/<%= i %>" class="text-warning">supprimer</a></li>
+            <% }%>
+            <% }%>
+</ul>

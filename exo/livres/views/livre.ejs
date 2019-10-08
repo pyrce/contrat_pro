@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<h1>Liste des livre</h1>
+
+<table class="table table-hover table-sm text-center">
+    <thead class="table-dark text-primary ">
+
+            <th>Titre</th>
+            <th colspan="2">Date</th>
+     
+    </thead>
+    <tbody>
+        <% if (data) { %>
+        <%for (var i = 0; i < data.length; i++) { %>
+            <tr class="table-secondary ">
+
+            <td><%= data[i].titre %></td>
+            <td><%= moment(data[i].date).format('DD MMMM YYYY') %></td>
+            <td> 
+                <a href="http://localhost:3000/livre/delete/<%= (data[i]._id) %>" class="btn btn-danger">x</a> 
+                <a href="/livre/edit/<%=data[i]._id%>" class="btn btn-warning">edit</a> 
+            </td>
+        </tr>
+        <% }%>
+        <% }%>
+    </tbody>
+</table>
+<a href="http://localhost:3000/livre/add">Ajouter un nouveau livre</a>

@@ -1,0 +1,29 @@
+{
+  "name": "operation",
+  "version": "1.0.0",
+  "description": "calcul de deux chiffre en bdd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pyrce",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "keywords": [
+    "calcul",
+    "bdd"
+  ]
+}
