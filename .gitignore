@@ -1,0 +1,3 @@
+./exo/**/node_modules/
+package-lock.json
+exo/**/node_modules/

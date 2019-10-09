@@ -30,4 +30,5 @@ const Operation = sequelize.define('operation', {
   }
  } ,{sequelize, timestamps: false});
 
-module.exports = Operation;
+ var exports = module.exports = {};
+ exports.Operation = Operation;
