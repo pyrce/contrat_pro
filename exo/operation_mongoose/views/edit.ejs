@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div class="page">
+
+        <div class="container-fluid d-flex flex-column " style="width:300px">
+
+        <form action="/update" method="POST" class="container-fluid d-flex flex-column">
+            <input type="hidden" name="id" value="<%=operation._id%>">
+            <select name="type">
+               <option value="addition">Addition</option>
+                <option value="mutliplication">Multiplication</option>
+                <option value="soustraction">soustraction</option>
+                <option value="division">division</option>
+            </select>
+             
+              <span> Nombre 1   <input type="text" value="<%=operation['nombre1']%>" name="nombre1" placeholder="entrez un nombre"> </span> 
+            
+              <span></span>   Nombre 2   <input type="text"  value="<%=operation.nombre2%>" name="nombre2" id=""> </span> 
+                <button type="submit" class="btn btn-primary">Modifier</button>
+
+            </form>
+            </div>
+        </div>
+        <style>
+             .page {
+               /* background-image: url("./page-bg.jpg");*/
+            background-color: rgb(230,230,230);
+                width: 100%;
+                height: 100%;
+        }
+        </style>
