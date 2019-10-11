@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+ 
+    <body>
+
+        <input type="text" name="msg" id="msg"/> <input type="button" value="envoyer" id="poke" />
+        <ul id="liste" style="position: relative">
+
+        </ul>
+
+
+
+
+        <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            $(document).ready(function(){
+            var socket = io.connect('http://localhost:3000');
+          
+   $('#poke').click(function () {
+                socket.emit('message', $("#msg").val() );
+            })
+     
+            socket.on("liste",function (message){
+            
+                $.each(message,function(index,m){
+                $("#liste").append("<li class='item' id='"+index+"'>"+m.text+" <a href='' class='supr btn btn-sm btn-danger'>x</a></li>");
+                });
+            });
+            
+            socket.on("new_liste",function (message){
+            
+                $("#liste").append("<li class='item'>"+message+" <a href='' class='supr btn btn-sm btn-danger'>x</a></li>");
+            }); 
+
+            socket.on("refresh",function (message){
+            $(".item").remove();
+                $.each(message,function(index,m){
+                $("#liste").append("<li class='item' id='"+index+"'>"+m.text+" <a href='' class='supr btn btn-sm btn-danger'>x</a></li>");
+                });
+        }); 
+
+
+                $("#liste").on("click","li .supr",function(){
+                    var id=$(this).parent(".item").attr("id");
+                    console.log(id );
+                    socket.emit("supprimer",id);
+                });
+
+   });
+        </script>
+        <style>
+        #liste li:nth-child(odd){
+            margin:8px;
+            background-color:lime;
+        }
+        #liste{
+            width:20%;
+            height:10%;
+            margin-top:10px;
+            padding-top: 5px;
+            outline: solid black 1px;
+            overflow: visible;
+        }
+        #liste li{
+            display:flex;
+            padding:10px;
+            border-radius: 10px;
+            justify-content:space-between;
+            
+            margin:8px;
+        }
+        </style>
+    </body>
+</html>
