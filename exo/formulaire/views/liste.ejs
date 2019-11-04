@@ -1,0 +1,28 @@
+<% include partials/head %>
+<div class="container">
+
+    <table class="table table-sm table-strip">
+        <thead class="text-center">
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Ville</th>
+            <th>Domaine</th>
+            <th>Date de naissance</th>
+            <th>genre</th>
+        </thead>
+        <tbody class="text-center">
+            <% for(let user of users){%>
+            <tr>
+                <td><%=user.nom%></td>
+                <td><%=user.prenom%></td>
+                <td><%=user.ville%></td>
+                <td><%=user.domaine%></td>
+                <td><%= moment(user.dateNaissance).format('D MMMM YYYY') %></td>
+                <td><%=user.genre%></td>
+            </tr>
+
+            <%}%>
+</tbody>
+</table>
+<a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
+</div>
