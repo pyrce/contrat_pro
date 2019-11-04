@@ -9,4 +9,5 @@ router.get("/edit/:id",operationController.edit);
 router.post("/add",operationController.add);
 router.post("/update",operationController.update);
 router.get("/desactiver/:id",operationController.desactiver);
+router.get("/technos",operationController.technos);
 module.exports = router;

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <div class="container">
+<form action="/add" method="post" >
+
+    <div class="d-flex flex-row" >
+
+<div class="d-flex flex-column bg-info">
+<span> Nom <input type="text" name="titre" id=""> </span>
+<span>auteur <input type="text" name="auteur" id=""> </span>
+</div>
+
+<div class="d-flex flex-column bg-success">
+<span>prix <input type="number" name="prix" id=""> </span>
+<span> genre <select name="genre" id=""></span>
+
+        <% for(let i=0;i<genre.length;i++){%>
+<option value="<%= genre[i]._id %>"><%= genre[i].nom %></option>
+        <%}%>
+   </select> 
+   </div>
+
+   </div>
+<textarea name="description" id="" cols="30" rows="10"></textarea>
+<button type="submit">Ajouter</button>
+
+
+</form>
+</div>
+<style>
+div span{
+    border: 1px solid;
+    width:60%;
+}
+</style>

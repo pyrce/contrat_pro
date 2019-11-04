@@ -3,12 +3,19 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat|Quicksand|Roboto+Mono&display=swap" rel="stylesheet">
+
 <div class="page">
         <div class="container">
 
 
                 <div class="jumbotron text-center bg-secondary" style="font-size:40px">Calculatrice</div>
-                <table class="table table-sm table-strip">
+
+                <ul class="nav d-flex justify-content-around border border-dark">
+                        <li class="nav-item"><a href="/">Accueil</a></li>
+                        <li class="nav-item"><a href="/technos">Technos</a></li>
+                </ul>
+
+                <table class="table table-sm table-strip table-responsive-sm">
                         <thead class="thead-light text-center">
                                 <th>nombre1</th>
                                 <th>nombre2</th>
@@ -17,8 +24,6 @@
                                 <th>Action</th>
                         </thead>
                         <tbody>
-
-
                                 <% for(var i=0;i<liste.length;i++){ %>
                                 <tr class="text-center <% if(liste[i].actif==0){ %> nonactif  <%}%>">
                                         <td><%= liste[i].nombre1 %></td>
@@ -26,33 +31,84 @@
                                         <td><%= liste[i].type%></td>
                                         <td><%= liste[i].resultat %></td>
                                         <td>
-                                                <%if(liste[i].actif){%> <a href="/calcul/<%=liste[i]._id%>"
-                                                        class="btn btn-primary btn-sm"><i
-                                                                class="fas fa-calculator"></i></a>
-                <a href="/edit/<%=liste[i]._id%>" class="btn btn-info btn-sm"><i class="fas fa-pen"></i></a>
-                                                <a href="/desactiver/<%=liste[i]._id%>"
-                                                        class="btn btn-warning btn-sm"><i class="fas fa-ban"></i></a>
-                                       <%}%> </td>
+                                                <%if(liste[i].actif){%> 
+                                                        <div id="actions" class="d-none d-lg-block">
+                                        <a href="/calcul/<%=liste[i]._id%>" class="btn btn-primary btn-sm"><i
+                                                        class="fas fa-calculator"></i></a>
+                                        <a href="/edit/<%=liste[i]._id%>" class="btn btn-info btn-sm"><i
+                                                        class="fas fa-pen"></i></a>
+                                        <a href="/desactiver/<%=liste[i]._id%>" class="btn btn-warning btn-sm"><i
+                                                        class="fas fa-ban"></i></a>
+        </div>
+
+<div class="d-block d-sm-none">
+         <button class="toggle btn btn-primary btn-sm">Actions</button>   
+
+         <div class="sm_menu">
+<ul class="nav navaction">
+        <li class="nav-item"><a class="nav-link" href="/calcul/<%=liste[i]._id%>" >Calcul</a></li>
+        <li class="nav-item"><a class="nav-link" href="/edit/<%=liste[i]._id%>" >edit</a></li>
+        <li class="nav-item"><a class="nav-link" href="/desactiver/<%=liste[i]._id%>" >Desactiver</a></li>
+        </ul>
+        </div>    
+</div>
+
+</div>
+        <%}%> </td>
                                 </tr>
 
                                 <% } %>
 
-                        </tbody>
+        </tbody>
 
 
-                </table>
-                <a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
-          
-        </div>
+        </table>
+        <div id="modal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+            
+                        </div>
+                      
+                      </div>
+        <a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
+
+</div>
 </div>
 <style>
         .page {
-               /* background-image: url("./page-bg.jpg");*/
-           
+                /* background-image: url("./page-bg.jpg");*/
+
                 width: 100%;
                 height: 100%;
         }
+        .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+}
+#close{
+        margin-bottom: 5px;
+        outline:solid 1px #888;
+        text-align: center;
+}
         .fas {
                 font-size: 20px;
         }
@@ -66,9 +122,91 @@
                 font-family: "Montserrat";
                 height: 30px;
                 line-height: 100%;
-                
+
         }
-      .nonactif{
-              background-color:lightgrey;
-      }
+
+        .nonactif {
+                background-color: lightgrey;
+        }
+
+        @media all and (max-width:900px) {
+                table {
+                        width: 900px;
+                        font-size: 12px;
+                }
+
+                i {
+                        font-size: 10px;
+                }
+
+                td,
+                th {
+                        width: 40%;
+                }
+
+
+        }
+
+        @media all and (max-width:400px) {
+                table {
+                        width: 60%;
+                }
+
+                td {
+                        width: 20%;
+                }
+.sm_menu{
+        display:none; 
+        margin-right: 10px;
+    
+}
+.navaction{
+        display:inline-grid;
+        flex-direction: column;
+        justify-content: flex-start;
+
+}
+.navaction li{
+        margin:2px 0;
+        background-color:lightcyan;
+        height: 30px;
+        width:17rem;
+        text-align:center;
+        display:inline-grid;
+        flex-direction: column;
+        justify-items: flex start;
+}
+
+        }
 </style>
+
+<script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $(".toggle").click(function(){
+               
+              //  $(this).nextAll(".sm_menu").slideToggle();
+                $("#modal").css({display:"block"});
+                $(".modal-content").html($(".sm_menu").html())
+
+        });
+
+        window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+});
+
+</script>

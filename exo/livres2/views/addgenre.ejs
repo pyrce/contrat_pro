@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+        <div class="container">
+            <form action="/updategenre" method="post">
+Nom <input type="text" name="genre" id=""> <br>
+couleur <input type="text" name="couleur"/>
+<button type="submit">Ajout</button>
+
+            <ul class="list-group">
+                <% for(let i=0;i<genre.length;i++){%>
+                <li class="list-group-item"> <span class="badge badge-primary badge-pill"><%=i+1 %></span> - <%= genre[i].nom %></li> 
+                <%}%>
+</ul>
+</form>
+<a href="/" class="btn btn-primary">retour</a>
+        </div>

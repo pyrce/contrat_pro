@@ -77,6 +77,7 @@ switch (type) {
       break;
     case "division":
       result = a / b;
+      result=parseInt(result*100)/100;
       break;
   }
 
@@ -109,5 +110,8 @@ controller.desactiver=async (req, res)=>{
     data.actif=0;
     data.save();
     res.redirect("/");
+}
+controller.technos= (req, res)=>{
+    res.render("technos");
 }
 module.exports = controller;
