@@ -2,13 +2,14 @@
 <div class="container">
 
     <table class="table table-sm table-strip">
-        <thead class="text-center">
+        <thead class="text-center bg-dark">
             <th>Nom</th>
             <th>Prenom</th>
             <th>Ville</th>
             <th>Domaine</th>
             <th>Date de naissance</th>
             <th>genre</th>
+            <th>Action</th>
         </thead>
         <tbody class="text-center">
             <% for(let user of users){%>
@@ -17,12 +18,42 @@
                 <td><%=user.prenom%></td>
                 <td><%=user.ville%></td>
                 <td><%=user.domaine%></td>
-                <td><%= moment(user.dateNaissance).format('D MMMM YYYY') %></td>
+                <td><%= moment(user.dateNaissance).local("fr").format('D MMMM YYYY') %></td>
                 <td><%=user.genre%></td>
+                <td> 
+                    <a href="/detail/<%=user._id%>">Voir</a> 
+                    <a href="/edit/<%=user._id%>">edit</a> 
+                </td>
             </tr>
 
             <%}%>
 </tbody>
 </table>
 <a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
+<a href="/random" class="btn btn-primary float-right">random</a>
 </div>
+
+<style>
+th{
+color:coral;
+
+}
+td{
+  font-family:Karla;  
+}
+table a{
+border-radius:12px 0 12px 0;
+text-decoration: none;
+outline:none;
+	background: #478bf9;
+    display: inline-block;
+	border:none;
+	color:#fff;
+	font:bold 12px Verdana;
+	padding:6px 0 3px 0;
+    width:4rem;
+}
+form a:hover{
+    background-color:orange;
+}
+</style>

@@ -13,7 +13,7 @@ var usersSchema = Schema({
     domaine:String,
     photo:String,
     ville: String,
-    selectionnner:Boolean,
+    choisi:Boolean,
     dateChoisi:Date,
     genre:String
     

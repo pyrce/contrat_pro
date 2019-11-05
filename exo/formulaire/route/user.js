@@ -5,5 +5,9 @@ const userController = require('../controller/usersController.js');
 router.get('/',userController.list);
 router.get("/ajout",userController.ajout);
 router.post("/add",userController.add);
-
+router.post("/update/:id",userController.update);
+router.get("/random",userController.random);
+router.get("/seed",userController.seed);
+router.get("/edit/:id",userController.edit);
+router.get("/detail/:id",userController.detail);
 module.exports =router;

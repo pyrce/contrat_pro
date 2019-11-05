@@ -1,0 +1,23 @@
+<% include partials/head %>
+
+<div class="container border border-info" style="width:20%">
+
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-header  bg-light text-center">Profil</div>
+
+    <div class="card-body">
+      <h5 class="card-title">Infos</h5>
+      <img src="../upload/<%=user.photo%>" class="card-img-top" alt="avatar" id="photo"> <br>
+
+      Nom : <%= user.nom%> <br>
+      Prenom <%=user.prenom%> <br>
+      date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
+      Ville : <%=user.ville %>
+
+
+    </div>
+  </div>
+  <a href="/random" class="float-right btn btn-primary">random</a>
+
+</div>
