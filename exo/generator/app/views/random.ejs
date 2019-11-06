@@ -1,0 +1,51 @@
+
+<% include partials/head %>
+<input type="hidden" value="<%=user.dateChoisi%>" id="date_choisi" />
+<div class="container border border-info" style="width:20%">
+
+<div>
+  prochain random <span id="compteur"></span>
+</div>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header  bg-light text-center">Profil</div>
+
+    <div class="card-body">
+      <h5 class="card-title">Infos</h5>
+      <img src="../upload/<%=user.photo%>" class="card-img-top" alt="avatar" id="photo"> <br>
+
+      Nom : <%= user.nom%> <br>
+      Prenom <%=user.prenom%> <br>
+      date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
+      Ville : <%=user.ville %> <br>
+      Domaine :  <%=user.domaine %> <br>
+
+
+    </div>
+  </div>
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+			  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+			  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+			  crossorigin="anonymous"></script>
+<script>
+$( document ).ready(function() {
+
+  function clock(){
+var date=new Date($("#date_choisi").val()).getTime();
+
+var today=new Date().getTime();
+
+var dif=new Date(date-today);
+
+time=dif.getHours()+":"+dif.getMinutes()+":"+dif.getSeconds();
+
+
+$("#compteur").html(time);
+  }
+
+  var temps=setInterval(clock,1000);
+});
+</script>

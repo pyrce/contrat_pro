@@ -10,4 +10,9 @@ router.get("/random",userController.random);
 router.get("/seed",userController.seed);
 router.get("/edit/:id",userController.edit);
 router.get("/detail/:id",userController.detail);
+
+router.get("/technos",function(req, res){
+
+    res.render("technos")
+});
 module.exports =router;

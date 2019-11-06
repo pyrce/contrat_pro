@@ -14,6 +14,7 @@ var usersSchema = Schema({
     photo:String,
     ville: String,
     choisi:Boolean,
+    role:{type:String,default:"user"},
     dateChoisi:Date,
     genre:String
     

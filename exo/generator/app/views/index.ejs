@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+
+
+
+    <table class="table table-responsive-sm table-strip border">
+      <thead class="text-center bg-dark">
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Ville</th>
+          <th>Domaine</th>
+          <th>Date de naissance</th>
+          <th>genre</th>
+          <th>Action</th>
+      </thead>
+      <tbody class="text-center">
+          <% for(let user of clients){%>
+          <tr>
+              <td><%=user.nom%></td>
+              <td><%=user.prenom%></td>
+              <td><%=user.ville%></td>
+              <td><%=user.domaine%></td>
+              <td><%= moment(user.dateNaissance).local("fr").format('D MMMM YYYY') %></td>
+              <td><%=user.genre%></td>
+              <td> 
+                  <a href="/detail/<%=user._id%>">Voir</a> 
+                  <a href="/edit/<%=user._id%>">edit</a> 
+              </td>
+          </tr>
+
+          <%}%>
+</tbody>
+</table>
+<a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
+<a href="/random" class="btn btn-primary float-right">random</a>
+  </body>
+</html>

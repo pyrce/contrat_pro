@@ -1,12 +1,13 @@
 const controller = {}
 const mongoose = require("mongoose");
 const users = require("../model/users");
-
+var moment = require('moment');
 var ObjectId = mongoose.Types.ObjectId;
 var mongoDB = 'mongodb://localhost:27017/formulaire';
-var moment = require('moment');
+
 mongoose.connect(mongoDB, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 
@@ -94,7 +95,7 @@ controller.add = async (req, res) => {
 }
 
 controller.random = async (req, res) => {
-    tmpuser = await users.findOne({
+ var   tmpuser = await users.findOne({
         choisi: 1
     });
     alluser = await users.find({});
@@ -103,7 +104,7 @@ controller.random = async (req, res) => {
     var today = Date.now();
 
     if (!tmpuser) {
-        let r = Math.floor(Math.random() * user.length);
+        let r = Math.floor(Math.random() * alluser.length);
         user = alluser[r];
         user.dateChoisi = today;
         user.choisi = 1;
@@ -116,8 +117,9 @@ controller.random = async (req, res) => {
         dif = ((today - tmpuser.dateChoisi) / 1000) / 3600;
 
         if (dif >= 24) {
-            let r = Math.floor(Math.random() * user.length);
+            let r = Math.floor(Math.random() * alluser.length);
             user = alluser[r];
+ 
             user.dateChoisi = today;
             user.choisi = 1;
             user.save();

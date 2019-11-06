@@ -1,0 +1,44 @@
+
+<div class="container">
+    <form action="add" method="post"  enctype="multipart/form-data" >
+
+                <div class="form-group">
+                    <label for="nom"> Nom </label><input type="text" class="form-control" name="nom" id="">
+                </div>
+                <div class="form-group">
+                    <label for="prenom"> prenom </label> <input type="text" class="form-control" name="prenom" id="">
+                </div>
+                <div class="form-group">
+                   <label for="genre"> genre</label> <select class="form-control" name="genre">
+                        <option value="h">Home</option>
+                        <option value="f">Femme</option>
+                    </select>
+                </div>
+  
+                <div class="form-group">
+                    date de naisance <input type="date" class="form-control" name="dateNaissance" id="">
+                </div>
+
+                <div class="form-group">
+                    Ville <input type="text" class="form-control" name="ville" id="">
+                </div>
+                <div class="form-group">
+                    Domaine <input type="text" class="form-control" name="domaine" id="">
+                </div>
+        
+            <div>
+                Photo <input type="file" class="form-control" name="photo" />
+            </div>
+  
+        <button type="submit" class="d-flex float-right btn btn-primary">enregistrer</button>
+
+    </form>
+
+</div>
+
+
+<style>
+.container {
+    width:40%;
+}
+</style>
