@@ -3,8 +3,13 @@
 <input type="hidden" value="<%=user.dateChoisi%>" id="date_choisi" />
 <div class="container border border-info" style="width:20%">
 
-<div>
-  prochain random <span id="compteur"></span>
+<div id="compteur">
+  <span class="text-warning">prochain random</span>
+<span>
+    <span id="heure" class="compteur"></span> :
+    <span id="minute" class="compteur"></span> :
+    <span id="seconde" class="compteur"></span>
+</span>
 </div>
   <div class="card" style="width: 18rem;">
     <div class="card-header  bg-light text-center">Profil</div>
@@ -26,26 +31,45 @@
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-			  src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-			  integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
-			  crossorigin="anonymous"></script>
+
 <script>
 $( document ).ready(function() {
 
   function clock(){
 var date=new Date($("#date_choisi").val()).getTime();
 
-var today=new Date().getTime();
+var demain=date+(60*60*24*1000);
+today=new Date().getTime();
 
-var dif=new Date(date-today);
+var dif=new Date(demain-today);
 
-time=dif.getHours()+":"+dif.getMinutes()+":"+dif.getSeconds();
+time=dif.getUTCHours()+":"+dif.getUTCMinutes()+":"+dif.getUTCSeconds();
+$("#heure").html(dif.getUTCHours());
+$("#minute").html(dif.getUTCMinutes());
+$("#seconde").html(dif.getUTCSeconds());
 
 
-$("#compteur").html(time);
   }
-
+//clock();
   var temps=setInterval(clock,1000);
 });
 </script>
+
+<style>
+  #compteur{
+    display:grid;
+    background-color:#343a40;
+    justify-content:center;
+    align-content:center;
+    height: 12%;
+    border-radius:10px;
+  }
+.compteur{
+  font-family:Karla;
+  display:inline-block;
+  width:2rem;
+  text-align:center;
+  background-color:darkgray;
+  border-radius:3px;
+}
+</style>
