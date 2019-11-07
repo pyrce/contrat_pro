@@ -119,7 +119,7 @@ exports.random = async (req, res) => {
 	   alluser = await clients.find({});
 	   var user;
 	   choisi = true;
-	   var today = Date.now();
+	   var today = new Date( new Date().toLocaleString());
    
 	   if (!tmpuser) {
 		   let r = Math.floor(Math.random() * alluser.length);
@@ -132,9 +132,10 @@ exports.random = async (req, res) => {
 			   moment: moment
 		   });
 	   } else {
-		   dif = ((today - tmpuser.dateChoisi) / 1000) / 3600;
-   
-		   if (dif >= 24) {
+ 
+		time=new Date(tmpuser.dateChoisi.toLocaleString()).getDate();
+
+		   if ( today.getDate() > time  ) {
 			   let r = Math.floor(Math.random() * alluser.length);
 			   user = alluser[r];
 	
@@ -147,13 +148,15 @@ exports.random = async (req, res) => {
 				   user: user,
 				   moment: moment
 			   });
-		   }
-	   }
-   
-	   res.render("random", {
+		   }else{
+			    res.render("random", {
 		   user: tmpuser,
 		   moment: moment
 	   });
+		   }
+	   }
+   
+	  
    
    }
 

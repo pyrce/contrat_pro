@@ -1,6 +1,7 @@
 
 <% include partials/head %>
 <input type="hidden" value="<%=user.dateChoisi%>" id="date_choisi" />
+
 <div class="container border border-info" style="width:20%">
 
 <div id="compteur">
@@ -18,7 +19,7 @@
       <h5 class="card-title">Infos</h5>
       <img src="../upload/<%=user.photo%>" class="card-img-top" alt="avatar" id="photo"> <br>
 
-      Nom : <%= user.nom%> <br>
+      Nom : <%= user.name%> <br>
       Prenom <%=user.prenom%> <br>
       date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
       Ville : <%=user.ville %> <br>
@@ -36,14 +37,18 @@
 $( document ).ready(function() {
 
   function clock(){
-var date=new Date($("#date_choisi").val()).getTime();
+var date=new Date($("#date_choisi").val());
 
-var demain=date+(60*60*24*1000);
+var demain=new Date();
+demain.setDate(date.getDate()+1);
+demain.setHours(3);
+demain.setMinutes(0);
+demain.setSeconds(0);
 today=new Date().getTime();
 
-var dif=new Date(demain-today);
+var dif=new Date(demain.getTime()-today);
 
-time=dif.getUTCHours()+":"+dif.getUTCMinutes()+":"+dif.getUTCSeconds();
+
 $("#heure").html(dif.getUTCHours());
 $("#minute").html(dif.getUTCMinutes());
 $("#seconde").html(dif.getUTCSeconds());
