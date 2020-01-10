@@ -19,7 +19,6 @@ window.addEventListener("load", () => {
     });
   });
 
-
   const createBubble = index => {
     //Create bubbles
     const bubble = document.createElement("div");
@@ -30,25 +29,30 @@ window.addEventListener("load", () => {
       visual.removeChild(this);
     });
   };
+
+ 
+ var liste=[];
+  document.querySelector("#record").onclick=()=>{  
+    var event=document.createEvent("Event");
+event.initEvent("record");
+    document.querySelectorAll(".pads div").forEach((pad, index) => {
+      pad.addEventListener("record", function() {
+        console.log(sounds[index]);
+        var temps=Date.now();
+        liste.push({
+            son:sounds[index],
+            temps:temps
+          })
+          console.log(liste)
+      });
+    });
+  
+  }
+  document.querySelector("#stop").onclick=()=>{ 
+    document.querySelectorAll(".pads div").forEach((pad, index) => {
+      pad.removeEventListener("record");
+    })
+    console.log(liste)
+  } 
+
 });
-
-
-  async function SavePhoto(inp) 
-{
-  console.log("sauvegarde")
-  console.log(inp)
-    let user = { name:'john', age:34 };
-    let formData = new FormData();
-    let photo = inp.files[0];      
-         console.log(photo);
-    formData.append("photo", photo);
-   // formData.append("user", JSON.stringify(user));  
-    
-    try {
-       let r = await fetch('./sounds/', {method: "POST", body: formData}); 
-       console.log('HTTP response code:',r.status); 
-    } catch(e) {
-       console.log('Huston we have problem...:', e);
-    }
-    
-}

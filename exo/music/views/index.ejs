@@ -16,8 +16,11 @@
   <body>
 
     <div id="menu">
-      <button id="bar" class="" data-toggle="collapse" aria-expanded="false" data-target="#content" aria-controls="content" class="">Menu</button>
-<div id="content" class="collapse">
+      <button id="bar" class="btn btn-success" data-toggle="collapse" aria-expanded="false" data-target="#content" aria-controls="content" class="">Menu</button>
+<button class="btn btn-primary" id="record">Enregistrer une musique</button>
+<button class="btn btn-primary" id="stop">Stop</button>
+      <div id="content" class="collapse">
+
         <form action="/update" method="post" enctype="multipart/form-data">
       <div>
         <span>emplacement 1 <input type="file" name="file1" id="" > </span>
