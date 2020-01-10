@@ -92,6 +92,8 @@ header p {
 }
 #content{
   background-color:rgb(160, 157, 152);
-  padding-top: 35px;
   width: 500px;
+}
+#content form {
+  padding-top: 35px;
 }
