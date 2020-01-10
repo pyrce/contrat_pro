@@ -40,7 +40,7 @@ is_record=true;
 
       pad.addEventListener("click", function() {
 if(is_record){
-       
+   
         var temps=Date.now();
         liste.push({
             son:sounds[index],
@@ -56,12 +56,32 @@ if(is_record){
   document.querySelector("#stop").onclick=()=>{ 
 
     is_record=false;
-    console.log(liste)
+  //  console.log(liste)
   } 
-  document.querySelector("#play").onclick=()=>{ 
-    for(let o of liste){
-      //console.log(o)
-      o.son.play();
-    }
+  document.querySelector("#play").onclick=()=>{
+
+   // for(let o of liste){
+     liste.forEach((o)=>{
+      console.log(o)
+         o.son.play();
+      var n= liste.map((e,i) => e.temps==o.temps ? i : undefined).filter(e =>e);
+      console.log("------")
+     // console.log("n:"+n)
+      // if(o.temps!=liste[liste.length-1].temps){
+      //     t1=o.temps;        
+      //     var son2=n+1;
+      //    // console.log(" n : "+n+"n2 : "+son2)
+      //     // console.log(liste[son2])
+      //     t2=liste[son2].temps;
+      //     d=t2-t1;//console.log("dif :"+d)
+           setTimeout(() => { 
+             console.log(liste[(n+1)].son)
+             liste[(n+1)].son.play();
+             
+           }, 2000);
+      // }
+   
+    })
+
   } 
 });
