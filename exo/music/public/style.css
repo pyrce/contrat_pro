@@ -81,12 +81,16 @@ header p {
 }
 
 #menu{
-  width:60%;
+  width:30%;
+  height: 40px;
   position: absolute;
-  height: 200px;
   float:left;
+  outline: solid 1px black;
+  background-color:aqua;
 }
 #content{
   background-color:floralwhite;
-  display: block;
+  height: 200px;
+
+  outline: solid 1px red;
 }

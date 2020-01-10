@@ -31,10 +31,7 @@ window.addEventListener("load", () => {
     });
   };
 });
- document.getElementById("bar").onclick=()=>{
-   console.log("click")
-    document.getElementById("menu").classList.add("show");
-  }
+
 
   async function SavePhoto(inp) 
 {

@@ -53,7 +53,7 @@ app.post("/update", (req,res) => {
              console.log(file.name)
              console.log(son[0]._id)
             // Sounds.update({_id:son[0]._id},{$set:{ nom:file.name } } );
-            Sounds.findByIdAndUpdate({_id:son[0]._id},{nom:file.name});
+           Sounds.findByIdAndUpdate(son[0]._id,{nom:file.name});
          });  
           res.redirect("/");
 
