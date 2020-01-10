@@ -80,17 +80,18 @@ header p {
   }
 }
 
-#menu{
-  width:30%;
-  height: 40px;
+.setting-btn{
+  right: 0;
   position: absolute;
-  float:left;
-  outline: solid 1px black;
-  background-color:aqua;
+  z-index: 2;
+}
+
+#menu{
+  position: absolute;
+  right: 0;
 }
 #content{
-  background-color:floralwhite;
-  height: 200px;
-
-  outline: solid 1px red;
+  background-color:rgb(160, 157, 152);
+  padding-top: 35px;
+  width: 500px;
 }
