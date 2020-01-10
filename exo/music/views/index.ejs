@@ -24,16 +24,22 @@
         <form class="pl-2" action="/update" method="post" enctype="multipart/form-data">
 
           <div class="row mr-0">
-            <div class="col-2">
-              <span>Son 1 :</span>
+            <div class="col-3">
+              <select class="custom-select" name="slot" id="song-slot-input" required>
+                <option disabled selected value="">Choix...</option>
+                <% for(let i=0; i<sounds.length; i++) {%>
+                  <option value="<%= i+1 %>"><%= i+1 %></option>
+                  <% } %>
+              </select>
+              
             </div>
             
-            <div class="col-8">
-              <input type="file" class="" name="file1" id="file1" >
+            <div class="col-7">
+              <input type="file" class="" name="file1" id="file-input" required>
             </div>
           </div>
 
-          <div class="row mr-0">
+          <!-- <div class="row mr-0">
             <div class="col-2">
               <span>Son 2 :</span>
             </div>
@@ -76,7 +82,7 @@
             <div class="col-8">
               <input type="file" class="" name="file6" id="file6" >
             </div>
-          </div>
+          </div> -->
 
           <!-- <div>
             <span>emplacement 1 <input type="file" class="form-control-file" name="file1" id="" > </span>
@@ -120,12 +126,12 @@
       <button id="stop">Stop</button>
       <button id="play">play</button>
       <div class="pads">
-
-          <% for(let sound of sounds) {%>
-            <div class="pad<%=i++%>">
-                    <audio src="../public/sounds/<%=sound.nom%>" class="sound"></audio>
-                  </div>
-            <%}%>
+        <% for(let sound of sounds) {%>
+          <div class="pad<%=i++%> d-flex justify-content-center align-items-center">
+            <audio src="../public/sounds/<%=sound.nom%>" class="sound"></audio>
+            <p class="small"><%= sound.nom %></p>
+          </div>
+        <%}%>
 
       </div>
     </section>

@@ -8,14 +8,17 @@ const mongoose=require('mongoose');
 var mongoDB = 'mongodb://localhost:27017/music';
 var ObjectId=mongoose.Types.ObjectId;
 mongoose.connect(mongoDB, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
 });
 var   Schema = mongoose.Schema;
 var soundsSchema=Schema({ 
     id:{type:ObjectId},
     nom:String
  })
-app.use(bodyParser());
+app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.urlencoded({extended: true}));
 var Sounds = mongoose.model('sounds', soundsSchema);
 // importing routes
 //const livreRoutes = require('./route/router');
@@ -42,24 +45,21 @@ app.get("/", (req,res) => {
     res.render("index",{sounds:sons,i:1});
 });
 
-})
+});
 app.post("/update", (req,res) => {
+    slot = Number(req.body.slot);
     file = req.files.file1;  
     path = "public/sounds/" + file.name;
-
+    console.log(slot);
     file.mv(path,()=>{
 
-         Sounds.find({}).limit(1).skip(0).exec((err,son)=> {
-            console.log(file.name)
+         Sounds.find({}).limit(1).skip(slot - 1).exec((err,son)=> {
+            // console.log(file.name)
             console.log(son[0]._id)
             // Sounds.update({_id:son[0]._id},{$set:{ nom:file.name } } );
            Sounds.findByIdAndUpdate(son[0]._id,{nom:file.name}, ()=>{
                res.redirect("/");
            });
          });  
-
     });
-
- 
-   
 })
