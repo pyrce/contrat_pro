@@ -32,27 +32,36 @@ window.addEventListener("load", () => {
 
  
  var liste=[];
-  document.querySelector("#record").onclick=()=>{  
-    var event=document.createEvent("Event");
-event.initEvent("record");
+ var is_record=false;
+  document.querySelector("#record").onclick=()=>{
+
+is_record=true;
     document.querySelectorAll(".pads div").forEach((pad, index) => {
-      pad.addEventListener("record", function() {
-        console.log(sounds[index]);
+
+      pad.addEventListener("click", function() {
+if(is_record){
+       
         var temps=Date.now();
         liste.push({
             son:sounds[index],
             temps:temps
           })
-          console.log(liste)
-      });
+          
+        }
+      },false);
+
     });
   
   }
   document.querySelector("#stop").onclick=()=>{ 
-    document.querySelectorAll(".pads div").forEach((pad, index) => {
-      pad.removeEventListener("record");
-    })
+
+    is_record=false;
     console.log(liste)
   } 
-
+  document.querySelector("#play").onclick=()=>{ 
+    for(let o of liste){
+      //console.log(o)
+      o.son.play();
+    }
+  } 
 });
