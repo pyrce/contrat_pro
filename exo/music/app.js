@@ -38,7 +38,7 @@ app.listen(app.get('port'), () => {
 app.get("/", (req,res) => {
 
     Sounds.find({},(err,sons)=>{ 
-   //     console.log(sons)
+    //    console.log(sons)
     res.render("index",{sounds:sons,i:1});
 });
 
@@ -49,13 +49,14 @@ app.post("/update", (req,res) => {
 
     file.mv(path,()=>{
 
-         Sounds.find({}).limit(1).skip(0).exec((err,son)=>{
-             console.log(file.name)
-             console.log(son[0]._id)
+         Sounds.find({}).limit(1).skip(0).exec((err,son)=> {
+            console.log(file.name)
+            console.log(son[0]._id)
             // Sounds.update({_id:son[0]._id},{$set:{ nom:file.name } } );
-           Sounds.findByIdAndUpdate(son[0]._id,{nom:file.name});
+           Sounds.findByIdAndUpdate(son[0]._id,{nom:file.name}, ()=>{
+               res.redirect("/");
+           });
          });  
-          res.redirect("/");
 
     });
 
