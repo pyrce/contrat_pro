@@ -1,0 +1,72 @@
+<% include partials/head %>
+<a href="/ajout" class="btn btn-primary float-right">Ajouter</a>
+<a href="/random" class="btn btn-primary float-right">random</a>
+<a href="/seed" class="btn btn-primary float-right">seed</a>
+<br>
+<div class="container-fluid ">
+    <input type="number" value="" id="current_page"/> <button onclick="setpage()">aller a la page</button>
+    <span>Page <%=page%>/<%=pages%></span> 
+
+    <div id="liste">
+<% for(let user of clients){%>
+
+    <div class="card" >
+            <div class="card-header bg-light text-center">Profil</div>
+        
+            <div class="card-body w-100">
+       <figure>
+              <img src="../upload/<%=user.photo%>" class="img-card-top" alt="avatar" id="photo"> <br>
+        </figure>
+              Nom : <%= user.name%> <br>
+              Prenom <%=user.prenom%> <br>
+              date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
+              Ville : <%=user.ville %> <br>
+              Domaine : <%=user.domaine %> <br>
+        
+            </div>
+            <div class="d-flex flex-row justify-content-around">
+            <a href="/detail/<%=user._id%>">Voir</a> 
+            <a href="/edit/<%=user._id%>">edit</a> 
+            </div>
+    </div>
+
+
+    <%}%>
+</div>
+    </div>
+
+    <style>
+ 
+.container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 4rem;
+}
+img{
+    width:280px;
+     height: 204px;
+}
+    figure{
+
+        border-radius: 10px;
+        
+    }
+    #liste{
+        display:flex;
+        flex-direction:row;
+
+        flex-wrap:wrap;
+        justify-content:space-between;
+ 
+    }
+.card{
+    margin-top: 20px;
+}
+    </style>
+
+    <script>
+    function setpage(){
+        var page=document.getElementById("current_page").value;
+        window.location.assign("/"+page);
+    }
+    </script>

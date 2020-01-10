@@ -1,0 +1,45 @@
+.msg:nth-child(odd){
+  background-color:blanchedalmond;
+  display:flex;flex-direction:row;
+}
+.text{
+  width:40%;
+  display:flex;
+  flex-direction:row;
+
+}
+.msg{
+
+  display:flex;
+  flex-direction:row;
+  align-content: center;
+justify-content:space-around;
+  height: 30px;
+  line-height:30px;
+  vertical-align: middle;
+ 
+}
+#messages{
+   outline:solid firebrick 1px;
+display: flex;
+flex-direction: column;
+   width: 50%;
+   overflow: scroll;
+}
+#main{
+  height: 50%;
+  width: 80%;
+  display:flex;
+  flex-direction: row;
+  outline:thick double darkgray;
+}
+h4{
+  font-family: 'Roboto slab'
+}
+p{
+  font-family: 'Indie Flower';
+ 
+}
+a{
+  margin-left: 10%;
+}

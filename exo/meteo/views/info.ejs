@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lora|Noto+Serif|Quicksand|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+   
+<div class="container">
+    <% if( data["cod"]!="404"){%>
+        <div class="card" style="width: 18rem;">
+                <div class="card-header  bg-light text-center">
+                    <img src="http://openweathermap.org/img/w/<%=data['weather'][0].icon%>.png">
+                    <%=data.name%></div>
+            
+                <div class="card-body">
+
+    temperature : <%=data["main"].temp%> C°<br>
+    Pression : <%=data["main"].pressure%> pascal<br>
+    Temp minimale <%= data["main"].temp_min%> C°<br>
+    Temp max <%= data["main"].temp_max %> C°<br>
+    Vent :  <%= data["wind"].speed %> km/h<br>
+    Lattitude :<%=data["coord"].lat%> <br>
+    longitude :<%=data["coord"].lon%> <br>
+</div>
+</div>
+<%}else{%>
+<span>Aucunn résultat</span>
+    <%}%>
+   <a href="/">Retour</a> 
+</div>
+
+<style>
+div{
+    font-family:lora;
+}
+</style>

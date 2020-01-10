@@ -1,17 +1,15 @@
-
 <% include partials/head %>
-<input type="hidden" value="<%=user.dateChoisi%>" id="date_choisi" />
 
 <div class="container border border-info" style="width:20%">
 
-<div id="compteur">
-  <span class="text-warning">prochain random</span>
-<span>
-    <span id="heure" class="compteur"></span> :
-    <span id="minute" class="compteur"></span> :
-    <span id="seconde" class="compteur"></span>
-</span>
-</div>
+  <div id="compteur">
+    <span class="text-warning">prochain random</span>
+    <span>
+      <span id="heure" class="compteur"></span> :
+      <span id="minute" class="compteur"></span> :
+      <span id="seconde" class="compteur"></span>
+    </span>
+  </div>
   <div class="card" style="width: 18rem;">
     <div class="card-header  bg-light text-center">Profil</div>
 
@@ -23,7 +21,8 @@
       Prenom <%=user.prenom%> <br>
       date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
       Ville : <%=user.ville %> <br>
-      Domaine :  <%=user.domaine %> <br>
+      Domaine : <%=user.domaine %> <br>
+
 
 
     </div>
@@ -34,47 +33,48 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
-$( document ).ready(function() {
+  $(document).ready(function () {
 
-  function clock(){
-var date=new Date($("#date_choisi").val());
+    function clock() {
 
-var demain=new Date();
-demain.setDate(date.getDate()+1);
-demain.setHours(3);
-demain.setMinutes(0);
-demain.setSeconds(0);
-today=new Date().getTime();
+      today = new Date();
+      var demain = new Date();
+      demain.setDate(today.getDate() + 1);
+      demain.setHours(3);
+      demain.setMinutes(0);
+      demain.setSeconds(0);
+      today = new Date().getTime();
 
-var dif=new Date(demain.getTime()-today);
-
-
-$("#heure").html(dif.getUTCHours());
-$("#minute").html(dif.getUTCMinutes());
-$("#seconde").html(dif.getUTCSeconds());
+      var dif = new Date(demain.getTime() - today);
 
 
-  }
-//clock();
-  var temps=setInterval(clock,1000);
-});
+      $("#heure").html(dif.getUTCHours());
+      $("#minute").html(dif.getUTCMinutes());
+      $("#seconde").html(dif.getUTCSeconds());
+
+
+    }
+    //clock();
+    var temps = setInterval(clock, 1000);
+  });
 </script>
 
 <style>
-  #compteur{
-    display:grid;
-    background-color:#343a40;
-    justify-content:center;
-    align-content:center;
+  #compteur {
+    display: grid;
+    background-color: #343a40;
+    justify-content: center;
+    align-content: center;
     height: 12%;
-    border-radius:10px;
+    border-radius: 10px;
   }
-.compteur{
-  font-family:Karla;
-  display:inline-block;
-  width:2rem;
-  text-align:center;
-  background-color:darkgray;
-  border-radius:3px;
-}
+
+  .compteur {
+    font-family: Karla;
+    display: inline-block;
+    width: 2rem;
+    text-align: center;
+    background-color: darkgray;
+    border-radius: 3px;
+  }
 </style>

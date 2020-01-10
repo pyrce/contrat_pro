@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./public/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tap Music</title>
+  </head>
+  <body>
+    <div id="menu">
+      <span id="bar">Menu</span>
+<div id="content">
+        <form action="/update" method="post" enctype="multipart/form-data">
+      <div>
+        <span>emplacement 1 <input type="file" name="file1" id="" > </span>
+      </div>
+
+      <div>
+          <span>emplacement 2 <input type="file" name="file2" id=""> </span>
+        </div>
+
+      <div>
+          <span>emplacement 3 <input type="file" name="file3" id=""> </span>
+        </div>
+
+      <div>
+          <span>emplacement 4 <input type="file" name="file4" id=""> </span>
+        </div>
+
+      <div>
+          <span>emplacement 5 <input type="file" name="file4" id=""> </span>
+        </div>
+
+      <div>
+          <span>emplacement 6 <input type="file" name="file5" id=""> </span>
+        </div>
+        <button type="submit">Enregistrer</button>
+        </form>
+</div>
+    </div>
+    <section class="app">
+      <header>
+        <h1>Tap Music</h1>
+        <p>Create sounds with just one tap</p>
+      </header>
+      <div class="visual"></div>
+      <div class="pads">
+          <% for(let sound of sounds) {%>
+            <div class="pad<%=i++%>">
+                    <audio src="../public/sounds/<%=sound.nom%>" class="sound"></audio>
+                  </div>
+            <%}%>
+
+      </div>
+    </section>
+
+    <script src="./public/index.js"></script>
+  </body>
+</html>

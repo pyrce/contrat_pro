@@ -1,4 +1,4 @@
-
+<% include partials/head %>
 <div class="container border border-info" style="width:20%">
 <div class="card" style="width: 18rem;">
     <div class="card-header  bg-light text-center">Profil</div>
@@ -9,7 +9,7 @@
 
       Nom : <%= user.nom%> <br>
       Prenom <%=user.prenom%> <br>
-      date de naisance <%=moment(user.dateNaissance).format('D MMMM YYYY')%> <br>
+      date de naisance <%=moment(user.dateNaissance).format('DD MMMM YYYY')%> <br>
       Ville : <%=user.ville %>
 
 

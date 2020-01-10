@@ -1,12 +1,13 @@
+<% include partials/head %>
 
 <div class="container">
     <form action="add" method="post"  enctype="multipart/form-data" >
 
                 <div class="form-group">
-                    <label for="nom"> Nom </label><input type="text" class="form-control" name="nom" id="">
+                    <label for="nom"> Nom </label><input type="text" value="<%= (typeof data!='undefined')? data.nom:'' %>" class="form-control" name="nom" id="">
                 </div>
                 <div class="form-group">
-                    <label for="prenom"> prenom </label> <input type="text" class="form-control" name="prenom" id="">
+                    <label for="prenom"> prenom </label> <input type="text" value="<%= (typeof data!='undefined')? data.prenom:'' %>" class="form-control" name="prenom" id="">
                 </div>
                 <div class="form-group">
                    <label for="genre"> genre</label> <select class="form-control" name="genre">
@@ -16,18 +17,19 @@
                 </div>
   
                 <div class="form-group">
-                    date de naisance <input type="date" class="form-control" name="dateNaissance" id="">
+                    date de naisance <input type="date" class="form-control" value="<%= (typeof data!='undefined')? data.dateNaissance:'' %>" name="dateNaissance" id="">
                 </div>
 
                 <div class="form-group">
-                    Ville <input type="text" class="form-control" name="ville" id="">
+                    Ville <input type="text" class="form-control" value="<%= (typeof data!='undefined')? data.ville:'' %>" name="ville" id="">
                 </div>
                 <div class="form-group">
-                    Domaine <input type="text" class="form-control" name="domaine" id="">
+                    Domaine <input type="text" class="form-control" value="<%= (typeof data!='undefined')? data.domaine:'' %>" name="domaine" id="">
                 </div>
         
             <div>
                 Photo <input type="file" class="form-control" name="photo" />
+                <%if(typeof erreur!="undefined"){ %> <span class="text-danger"><%=erreur%></span><%}%>
             </div>
   
         <button type="submit" class="d-flex float-right btn btn-primary">enregistrer</button>

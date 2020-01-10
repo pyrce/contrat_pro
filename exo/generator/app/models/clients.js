@@ -13,7 +13,6 @@ var clientSchema = mongoose.Schema({
     photo:String,
     genre:String,
     dateNaissance:Date,
-    choisi:Boolean,
     dateChoisi:Date,
 },{collection:"clients"});
 

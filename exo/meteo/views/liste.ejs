@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Lora|Noto+Serif|Quicksand|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+        
+        <div class="container">
+
+<form action="/getmeteo" method="post">
+
+    <span class="form-group">
+        <label for="ville">Ville</label><input class="form-control w-25" type="text" id="ville" name="ville"/>
+    </span>
+
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
+<div id="listes" class="d-flex flex-direction-row flex-wrap">
+     <%if(typeof listes_ville!="undefined" ){%>
+<% for(let data of listes_ville){%>
+
+    <div class="card" style="width: 18rem;">
+            <div class="card-header  bg-light text-center" id="nom">
+   
+             <img id="sky" src="http://openweathermap.org/img/w/<%=data.icone%>.png">
+        
+                <%=data.name%> <a href="/delete/<%=data._id%>" <i class="fas fa-times"></i> </a></div>
+        
+            <div class="card-body">
+
+temperature : <%=data.temp%> C°<br>
+Pression : <%=data.pression%> pascal<br>
+Temp minimale <%= data.temp_min%> C°<br>
+Temp max <%= data.temp_max %> C°<br>
+Vent :  <%= data.vent %> km/h<br>
+
+            </div>
+</div>
+
+<%} } %>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+#listes{
+    height:850px;
+    outline:solid 1px black;
+    background-color: floralwhite;
+}
+#listes .card{
+    height:250px;
+    margin:0 40px;
+}
+</style>

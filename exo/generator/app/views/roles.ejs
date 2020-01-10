@@ -1,0 +1,52 @@
+<% include partials/head %>
+
+    <table class="table table-responsive-sm table-strip border">
+        <thead class="text-center bg-dark">
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>email</th>
+            <th>role</th>
+            <th>status</th>
+            <th>Action</th>
+        </thead>
+        <tbody class="text-center">
+            <% for(let user of users){%>
+            <tr>
+                <td>
+                    <%if (user.role_id.name=="admin"){%>
+                        <i class="fas fa-user-shield"></i>
+                    <% }%>
+                    <%=user.name%></td>
+                <td><%=user.prenom%></td>
+                <td><%=user.mail%></td>
+                <td><%=user.role_id.name%></td>
+                <td><%=  user.status  %></td>
+                <td> 
+                    <a href="/detail/<%=user._id%>">Voir</a> 
+                    <a href="/role/edit/<%=user._id%>">edit</a> 
+                </td>
+            </tr>
+  
+            <%}%>
+  </tbody>
+  </table>
+
+  <% if( typeof tmpuser !='undefined' ) {%>
+<form action="/roleupdate/<%=tmpuser._id%>" method="post">
+
+    <div class="form-group">
+        <%= tmpuser.name %>
+    </div>
+    <div class="form-group">
+        <label for="prenom"> Role </label> 
+        
+        <select name="role" id="">
+            <% for(let role of roles){%>
+<option value="<%=role._id%>"><%=role.name%></option> 
+                <% }%>
+        </select>
+    </div>
+<button type="submit" class="btn btn-primary">>Enregistrer</button>
+</form>
+
+  <%} %>

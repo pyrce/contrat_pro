@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <div class="container">
+
+<form action="/add" enctype="multipart/form-data" method="post">
+    <div class="d-flex flex-row" >
+
+<div class="d-flex flex-column bg-info">
+<span> Nom <input type="text" name="titre" id="titre" /> </span>
+<span>image <input type="file" name="image" id="image" /> </span>
+</div>
+
+
+
+   </div>
+<textarea name="text" id="text" cols="30" rows="10"></textarea>
+<button id="add" type="submit">Ajouter</button>
+</form>
+
+</div>
+<style>
+div span{
+    border: 1px solid;
+  
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+    <script src="/socket.io/socket.io.js"></script>
+<script>
+   var socket=io(); 
+$(()=>{
+var myimage="";
+
+
+$("#add").click(() => {
+  
+})
+
+} )
+</script>
