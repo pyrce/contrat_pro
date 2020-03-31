@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nom": "Tom",
+    "prenom": "Tom",
+    "age": 20,
+    "tel": "01020304",
+    "email": "tom@mail.fr",
+    "profession": "mechanitien"
+  },
+  {
+    "id": 2,
+    "nom": "Jean",
+    "prenom": "Doe",
+    "age": 30,
+    "email": "jeann@mail.fr",
+    "tel": "01020304",
+    "profession": "professeur"
+  },
+  {
+    "id": 3,
+    "nom": "Jaque",
+    "prenom": "Pote",
+    "age": 55,
+    "tel": "01020304",
+    "email": "jaque@mail.fr",
+    "profession": "architecte"
+  },
+  {
+    "id": 4,
+    "nom": "Jeanne",
+    "prenom": "Darc",
+    "age": 18,
+    "tel": "01020304",
+    "email": "jeanne@mail.fr",
+    "profession": "Juge"
+  }
+]

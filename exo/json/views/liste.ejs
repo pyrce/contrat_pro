@@ -1,0 +1,55 @@
+<%- include partials/partials %>
+       
+
+<div class="container d-flex flex-column align-items-center justify-content-center">
+<select name="" id="users">
+    <%for(d of data){%>
+        <option value="<%=d.id%>"><%=d.nom%></option>
+    <%}%>
+</select>
+
+
+<div class="card shadow" id="infos" style="width: 18rem;margin-right: 10px;">
+    <h5 class="card-header m-auto text-center"><span id="nom"></span>  <span id="prenom"></span> <br> </h5>
+
+    <div class="card-body">
+   
+   <span id="age"></span><br>
+   <span id="tel"></span><br>
+   <span id="email"></span><br>
+   <span id="profession"></span>
+</div>
+</div>
+</div>
+<style>
+    #users{
+        width:10%;
+    }
+    #infos{
+        display:none;
+    }
+</style>
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script>
+$("#users").on("change",()=>{
+$.ajax({
+    url:"/getinfo/"+$("#users").val(),
+    success:(data)=>{
+console.log(data)
+$("#nom").html(data[0].nom)
+$("#prenom").html(data[0].prenom)
+$("#profession").html("Profession : "+data[0].profession)
+$("#age").html("Age : "+data[0].age)
+$("#tel").html("Telephone : "+data[0].tel)
+$("#email").html("Mail : "+data[0].email)
+$("#infos").css({display:"block"});
+    }
+   
+})
+
+})
+
+</script>
