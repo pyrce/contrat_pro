@@ -1,0 +1,86 @@
+<%- include partials/partials %>
+       
+
+<div class="container d-flex flex-column align-items-center justify-content-center">
+<div id="header">
+    <span style="font-family: Quicksand;">Express</span>
+    <span>Liste utilisateurs</span>
+</div>
+
+   <span id="msg"> <%if(msg){%>
+        <%= msg %>
+        <%}%></span>
+<select name="" id="users">
+    <%for(d of data){%>
+        <option value="<%=d.id%>"><%=d.nom%></option>
+    <%}%>
+</select>
+
+
+<div class="card shadow" id="infos" style="width: 18rem;margin-right: 10px;">
+    <div class="card-header m-auto text-center">
+
+        <span id="nom"></span>  <span id="prenom"></span>     <span id="age"></span> <br>
+      <span id="profession"></span>
+    </div>
+
+    <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://via.placeholder.com/100.png/c4dfaf/fffC/O%20https://placeholder.com/" alt="">
+
+</div>
+<div class="card-footer d-flex justify-content-around">
+       <span id="tel"></span> -
+   <span id="email"></span>
+</div>
+
+</div>
+
+
+</div>
+<style>
+#header{
+    width: 140%;
+height: 100%;
+outline:solid 1px gainsboro;
+box-shadow: 0px 8px 2px -3px rgba(0,0,0,0.42);
+display: grid;
+grid-template-columns: 1.8fr 2fr;
+margin-bottom: 20px;
+}
+    #users{
+        width:10%;
+    }
+    #infos{
+        display:none;
+    }
+    #nom, #prenom{
+        font-family: Montserrat;
+    }
+</style>
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script>
+$("#users").on("change",()=>{
+$.ajax({
+    url:"/getinfo/"+$("#users").val(),
+
+    success:(data)=>{
+$("#msg").html("");
+console.log(data)
+$("#nom").html(data[0].nom)
+$("#prenom").html(data[0].prenom)
+$("#profession").html(data[0].profession)
+$("#age").html(data[0].age+" ans")
+$("#tel").html("<i class='fas fa-phone'></i>"+data[0].tel)
+$("#email").html("<i class='fas fa-at'></i> "+data[0].email)
+$("#infos").css({display:"block"});
+
+    }
+   
+})
+
+})
+
+</script>

@@ -1,0 +1,35 @@
+<%- include ("partials/head") %>
+
+<div class="container">
+
+<div class="">
+Page gestion
+</div>
+
+<div class="d-flex flex-row">
+<a href="/adduser" class="btn btn-primary">ajouter utilisateur</a> <br>
+<a href="/attribuer"  class="btn btn-primary">attribuer</a>
+</div>
+<table class="table table-sm table-strip table-responsive-sm">
+    <thead class="thead-light text-center">
+    <th>nom</th>
+    <th>utilisateur</th>
+    <th>Heure debut</th>
+    <th>Heure fin</th>
+    <th>Action</th>
+</thead>
+<tbody>
+<%for(o of ordis ){%>
+<tr class="text-center">
+    <td><%=o.nom%></td>
+   <td><%=o.user_id.nom %> <%=o.user_id.prenom %></td>
+    <td><%=moment(o.heure_debut).format('h:mm a')%></td>
+    <td><%=moment(o.heure_fin).format('h:mm a')%></td>
+    <td><a href="/cancel/<%= o._id%>" >Annuler</a></td>
+</tr>
+    <%}%>
+</tbody>
+
+</table>
+
+</div>

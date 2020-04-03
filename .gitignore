@@ -1,4 +1,8 @@
 ./exo/**/node_modules/
 package-lock.json
 exo/**/node_modules/
+/exo/input_lurl
+exo/react-boilerplate
+exo/react-weather
 upload/
+**/report.*

@@ -1,0 +1,54 @@
+{
+  "name": "react-weather",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@bit/primefaces.primereact.autocomplete": "^3.1.8",
+    "@bit/primefaces.primereact.button": "^3.1.8",
+    "@bit/primefaces.primereact.inputtext": "^3.1.8",
+    "@bit/primefaces.primereact.tooltip": "^3.1.8",
+    "@bit/primefaces.primereact.utils.dom-handler": "^3.1.8",
+    "@bit/primefaces.primereact.utils.object-utils": "^3.1.8",
+    "@material-ui/core": "^4.9.1",
+    "@material-ui/icons": "^4.9.1",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.8.20",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:non-watch": "react-scripts test --watchAll=false",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run test:non-watch"
+    }
+  }
+}

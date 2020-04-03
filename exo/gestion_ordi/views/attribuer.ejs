@@ -1,0 +1,19 @@
+<%- include ("partials/head") %>
+
+<form action="/ordi/attribuer" method="post" class="d-flex flex-column border border-primary w-25">
+
+    <select name="user" id="">
+        <%for(let r of users){%>
+<option value="<%= r._id %>"><%=r.nom%> - <%=r.prenom%> </option>
+            <%}%>
+    </select> 
+
+    <select name="ordi" id="">
+        <%for(let o of ordinateurs){%>
+<option value="<%= o._id %>"><%=o.nom%> </option>
+            <%}%>
+    </select> 
+<input type="time" name="heure_debut"  placeholder="heure de debut" id=""> <br/>
+<input type="time" name="heure_fin" placeholder="heure de fin" id=""> 
+<button type="submit">Attribuer</button>
+</form>

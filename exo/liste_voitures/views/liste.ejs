@@ -1,0 +1,99 @@
+<%- include partials/partials %>
+       
+
+<div class="container d-flex flex-column align-items-center justify-content-center">
+<div id="header">
+    <span style="font-family: Quicksand;">Express</span>
+    <span>Liste voitures</span>
+</div>
+
+   <span id="msg"> <%if(msg){%>
+        <%= msg %>
+        <%}%></span>
+
+        <div class="d-flex flex-row">
+<select name="" id="users">
+    <option value="">Marques</option>
+    <%for(d of data){%>
+        <option value="<%=d.id%>"><%=d.marque%></option>
+    <%}%>
+</select>
+
+
+<select name="" id="models">
+        <option value="">Modeles</option>
+</select>
+</div>
+
+<div class="card shadow" id="infos" style="width: 18rem;margin-right: 10px;">
+    <div class="card-header m-auto text-center">
+
+        <span id="model"></span>    <br>
+      <span id="prix"></span>
+    </div>
+
+    <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://via.placeholder.com/100.png/c4dfaf/fffC/O%20https://placeholder.com/" alt="">
+<span id="fiche"></span>
+</div>
+
+</div>
+
+
+</div>
+<style>
+#header{
+    width: 140%;
+height: 100%;
+outline:solid 1px gainsboro;
+box-shadow: 0px 8px 2px -3px rgba(0,0,0,0.42);
+display: grid;
+grid-template-columns: 1.8fr 2fr;
+margin-bottom: 20px;
+}
+    #infos{
+        display:none;
+    }
+
+</style>
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script>
+$("#users").on("change",()=>{
+$.ajax({
+    url:"/getinfo/"+$("#users").val(),
+
+    success:(data)=>{
+
+$("#models").html("");
+data.forEach(d=>{
+    $("#models").append("<option value="+d.id+">"+d.nom+"</option>")
+})
+    }
+   
+})
+
+})
+
+$("#models").on("change",()=>{
+data={}
+data["marque"]=$("#users").val();
+data["model"]=$("#models").val();
+$.ajax({
+    url:"/getfiche",
+    type:"POST",
+    data:data,
+    success:(data)=>{ 
+        $("#model").html(data.nom);
+        $("#prix").html(data.prix);
+        $("#fiche").html("<p>Puissance : "+data.puissance+"</br> Carburant : "+data.carburant+"</br> Consomation : "+data.consomation+"</p>")
+        $("#infos").css({display:"block"});
+        
+    }
+})
+
+
+})
+</script>
