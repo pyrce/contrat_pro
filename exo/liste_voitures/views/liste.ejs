@@ -7,37 +7,31 @@
     <span>Liste voitures</span>
 </div>
 
-   <span id="msg"> <%if(msg){%>
-        <%= msg %>
-        <%}%></span>
-
         <div class="d-flex flex-row">
-<select name="" id="users">
-    <option value="">Marques</option>
-    <%for(d of data){%>
-        <option value="<%=d.id%>"><%=d.marque%></option>
-    <%}%>
-</select>
 
 
-<select name="" id="models">
+<select name="" id="marques">
         <option value="">Modeles</option>
 </select>
+
+<select name="" id="models">
+    <option value="">Modeles</option>
+</select>
 </div>
 
-<div class="card shadow" id="infos" style="width: 18rem;margin-right: 10px;">
-    <div class="card-header m-auto text-center">
+<div
+      class="card shadow"
+      id="infos"
+      style="width: 25rem;margin-right: 10px;"
+    >
+      <div class="card-header m-auto text-center">
+        <h3>Fiche technique</h3>
+      </div>
 
-        <span id="model"></span>    <br>
-      <span id="prix"></span>
+      <div class="card-body" style="background-color: #c4dfaf;">
+        <span id="fiche"></span>
+      </div>
     </div>
-
-    <div class="card-body">
-            <img class="card-img-top img-fluid" src="https://via.placeholder.com/100.png/c4dfaf/fffC/O%20https://placeholder.com/" alt="">
-<span id="fiche"></span>
-</div>
-
-</div>
 
 
 </div>
@@ -54,22 +48,31 @@ margin-bottom: 20px;
     #infos{
         display:none;
     }
+    .item {
+        color: white;
+        font-family: "Verdana";
+        background-color: burlywood;
+        border-radius: 9px;
+        outline: solid 1px gainsboro;
+        box-shadow: 0px 8px 2px -3px rgba(0, 0, 0, 0.42);
+        padding: 5px;
+        margin: 10px 0px;
+        display: flex;
+        flex-direction: row;
+      }
 
 </style>
-<script
-src="https://code.jquery.com/jquery-3.4.1.min.js"
-integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<%- include partials/script %>
 <script>
-$("#users").on("change",()=>{
+   $(document).ready(function() {
 $.ajax({
-    url:"/getinfo/"+$("#users").val(),
+    url:"/liste/",
 
     success:(data)=>{
 
-$("#models").html("");
+$("#marques").html("");
 data.forEach(d=>{
-    $("#models").append("<option value="+d.id+">"+d.nom+"</option>")
+    $("#marques").append("<option value="+d.make_id+">"+d.make_display+"</option>")
 })
     }
    
@@ -77,23 +80,48 @@ data.forEach(d=>{
 
 })
 
-$("#models").on("change",()=>{
-data={}
-data["marque"]=$("#users").val();
-data["model"]=$("#models").val();
+$("#marques").on("change",()=>{
+
 $.ajax({
-    url:"/getfiche",
+    url:"/getinfo/"+$("#marques").val(),
     type:"POST",
-    data:data,
-    success:(data)=>{ 
-        $("#model").html(data.nom);
-        $("#prix").html(data.prix);
-        $("#fiche").html("<p>Puissance : "+data.puissance+"</br> Carburant : "+data.carburant+"</br> Consomation : "+data.consomation+"</p>")
-        $("#infos").css({display:"block"});
-        
-    }
+    success:function(data) {
+            //The 'data' variable contains all response data.
+            var makes = data.Trims;
+            for (var i = 0; i < makes.length; i++) {
+              //You can now do what you like with the response data
+              $("#models").append(
+                "<option value=" +
+                  makes[i].model_id +
+                  ">" +
+                  makes[i].model_trim +
+                  "</option>"
+              );
+            }
+
+        }
+})
+
 })
 
 
-})
+$("#models").on("change", () => {
+        $.ajax({
+         url: "/getfiche/" +
+            $("#models").val() ,
+            type:"post",
+        success :  function(data) {
+              console.log(data)
+            //The 'data' variable contains all response data
+            for (k in data) {
+              $("#fiche").append(
+                "<span class='item'>" + k + " : " + data[k] + "</span></br>"
+              );
+            }
+            $("#infos").css({ display: "flex", flexDirection: "column" });
+          }
+        }
+        );
+        $('#models').select2();
+      });
 </script>

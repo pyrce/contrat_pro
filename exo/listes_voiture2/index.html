@@ -83,7 +83,7 @@
       });
 
       $("#marques").on("change", () => {
-        $.getJSON(
+        $.ajax(
           "https://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=" +
             $("#marques").val() +
             "&callback=?",
@@ -103,6 +103,7 @@
           }
         );
       });
+
       $("#models").on("change", () => {
         $.getJSON(
           "https://www.carqueryapi.com/api/0.3/?cmd=getModel&model=" +
@@ -110,7 +111,7 @@
             "&callback=?",
           function(data) {
             //The 'data' variable contains all response data
-            for (k in data[0]) {
+            for (k in data) {
               $("#fiche").append(
                 "<span class='item'>" + k + " : " + data[0][k] + "</span></br>"
               );

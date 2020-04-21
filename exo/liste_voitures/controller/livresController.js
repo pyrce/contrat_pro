@@ -1,57 +1,69 @@
 const controller = {};
 const fs = require("fs");
-
+const https = require("https");
 /**recupere la lsite des tuilisateurs et renvoie les donnes dans la vue
  * @version 1.0
  */
 controller.liste = (req, res) => {
-  fs.readFile("users.json", "utf8", (err, file) => {
-    if (err) console.log(err);
-    data = JSON.parse(file);
+  https.get("https://www.carqueryapi.com/api/0.3/?cmd=getMakes", datas => {
+    // if (err) console.log(err);
+    console.log("getmakes");
+    var body = "";
 
-    res.render("liste", { data: data, msg: req.flash("error") });
+    datas.on("data", function(chunk) {
+      body += chunk;
+    });
+
+    datas.on("end", function() {
+      var fbResponse = JSON.parse(body);
+      // console.log("Got a response: ", fbResponse);
+      res.send(fbResponse.Makes);
+    });
   });
 };
 /**recupere les infos d'un utilisateur
  *  @version 1.0
  */
 controller.getinfo = (req, res) => {
-  fs.readFile("users.json", "utf8", (err, file) => {
-    if (err) console.log(err);
-    data = JSON.parse(file).filter(x => {
-      return x.id == req.params.id;
-    });
+  https.get(
+    "https://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=" + req.params.id,
+    datas => {
+      // if (err) console.log(err);
 
-    if (data.length > 0) {
-      req.flash("error", "");
-      res.send(data[0].model);
-    } else {
-      req.flash("error", "Aucunes voitures");
-      res.redirect("/");
+      var body = "";
+
+      datas.on("data", function(chunk) {
+        body += chunk;
+      });
+
+      datas.on("end", function() {
+        var fbResponse = JSON.parse(body);
+        // console.log("Got a response: ", fbResponse);
+        res.send(fbResponse);
+      });
     }
-  });
+  );
 };
 
 controller.getfiche = (req, res) => {
-  fs.readFile("users.json", "utf8", (err, file) => {
-    if (err) console.log(err);
+  https.get(
+    "https://www.carqueryapi.com/api/0.3/?cmd=getModel&model=" + req.params.id,
+    datas => {
+      // if (err) console.log(err);
 
-    datas = JSON.parse(file).filter(x => {
-      return x.id == req.body.marque;
-    });
+      var body = "";
 
-    data = datas[0].model.filter(y => {
-      return y.id == req.body.model;
-    });
+      datas.on("data", function(chunk) {
+        body += chunk;
+      });
 
-    if (data.length > 0) {
-      req.flash("error", "");
-      res.send(data[0]);
-    } else {
-      req.flash("error", "Aucunes voitures");
-      res.redirect("/");
+      datas.on("end", function() {
+        var fbResponse = JSON.parse(body);
+
+        res.send(fbResponse[0]);
+      });
     }
-  });
+  );
 };
 
 module.exports = controller;
