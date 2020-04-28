@@ -26,7 +26,7 @@ Mais il peut s'agir de personnes sans handicaps :
   - les personnes ayant « une limitation situationnelle » comme être en plein soleil ou dans un environnement où elles ne peuvent pas écouter l’audio
   - les personnes utilisant une connexion internet lente ou ayant une bande passante limitée ou onéreuse
 
-#W3C
+# W3C
 
 World Wide Webb Consortium. Dirigé par tim erners Lee, C'est un organisme de standardisation chargé de promouvoir la compatibilité des technologies web (html, json, xml...)
 
