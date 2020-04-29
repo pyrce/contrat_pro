@@ -11,7 +11,7 @@ Les spécifications fonctionnelles vont décrire les aspects métier de l’appl
 
 Un récit utilisateur est une phrase simple dans le langage de tous les jours permettant de définir avec suffisamment de précision le contenu d'une fonctionnalité à développer.
 Elle se présennte sous la forme :  En tant que \<qui>, je veux \<quoi> afin de \<pourquoi>
-- qui :  représente la personne, ou la fonction de la personnne qui va utilisé l'application.  
+qui :  représente la personne, ou la fonction de la personnne qui va utilisé l'application.  
 quoi : décrit succinctement la fonctionnalité ou le comportement attendu  
 pourquoi : permet d'identifier l'intérêt de la fonctionnalité et d'en justifier le développement
 
